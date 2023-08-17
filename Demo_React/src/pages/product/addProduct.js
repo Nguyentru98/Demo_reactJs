@@ -1,7 +1,10 @@
 
 import {Formik ,Field,Form} from "formik"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
+
 export default function AddProduct() {
+    const navigate = useNavigate()
     return (
         <>
             <h1>Add products</h1>
@@ -13,6 +16,7 @@ export default function AddProduct() {
                 onSubmit={(values) =>{
                     axios.post("http://localhost:3001/products",values).then(()=>{
                          alert("them san pham thanh cong")
+                         navigate('/product')
                     })
                 }}
             >
@@ -20,7 +24,7 @@ export default function AddProduct() {
                     <Field name = {'title'}></Field>
                     <Field name = {'price'}></Field>
                     <Field name = {'description'}></Field>
-                    <button type="submit">save</button>
+                    <button>save</button>
                 </Form>
                 
             </Formik>

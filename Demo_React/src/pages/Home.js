@@ -10,7 +10,6 @@ export default function Home() {
             <Navbar></Navbar>
                 <Link to={'/product'}>List Product</Link> |
                 <Link to={'/add'}>Add Product</Link> |
-
             <hr />
             <Outlet></Outlet>
             <Footer></Footer>

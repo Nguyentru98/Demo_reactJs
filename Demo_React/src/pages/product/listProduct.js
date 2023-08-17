@@ -7,9 +7,20 @@ export default function ListProduct() {
     useEffect(()=>{
         axios.get('http://localhost:3001/products').then(res =>{
             setList(res.data)
-
         })
     },[])
+    
+    function deletePr(id) {
+
+      axios.delete('http://localhost:3001/products/' + id).then(() => {
+          console.log('xoa thanh cong')
+          
+        axios.get('http://localhost:3001/products').then(res =>{
+          setList(res.data)
+      })
+      })
+  };
+      
     return (
         <>
 
@@ -32,8 +43,7 @@ export default function ListProduct() {
                           <td>{item.description}</td>
                           <Link to={'/edit/'+item.id}>
                             <td><button type="button" className="btn btn-success">Edit</button></td></Link><td>
-                           <Link to={'/delete/'+item.id}>
-                            <button type="button" className="btn btn-danger">Delete</button></Link></td>
+                            <button type="button" className="btn btn-danger" onClick={()=>{deletePr(item.id)}}>Delete</button></td>
                         </tr>
                  )
             })}
